@@ -1,5 +1,5 @@
 ---
-title: "deneme"
+title: "RSQLite"
 output: html_document
 date: "2024-04-05"
 ---
@@ -15,6 +15,16 @@ library(readxl)
 ##**Databaseleri birleştir**
 
 ```{r}
+library(DBI)
+##con<-dbConnect(RSQLite::SQLite(), dbname =":memory:")
+##dbDisconnect(con)
+#con<-dbConnect(RSQLite::SQLite(), dbname = "veritabani.db")
+#dbWriteTable(con, "Games", Games)
+#dbWriteTable(con, "Sales", Sales)
+
+result <- dbGetQuery(con, "SELECT * FROM Games JOIN Sales ON Games.id = Sales.id")
+
+ 
 
 ```
 
