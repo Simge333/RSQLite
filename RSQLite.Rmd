@@ -4,24 +4,32 @@ output: html_document
 date: "2024-04-05"
 ---
 
-Databaseleri yükle 
-```{r setup, include=FALSE}
+##**Databaseleri yükle **
+```{r}
+library(readxl)
+#Sales <- read_excel("Sales.xlsx")
+#Games<-read_excel("Games.xlsx")
+```
+
+
+##**Databaseleri birleştir**
+
+```{r}
 
 ```
 
-## R Markdown
-Databaseleri birleştir
 
-```{r cars}
 
-```
+##**Grafikleştir**
 
-## Including Plots
-
-Grafikleştir
-
-```{r pressure, echo=FALSE}
-
+```{r}
+print("hello")
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+````{r}
+#lolo
+print("hello")
+
+```
