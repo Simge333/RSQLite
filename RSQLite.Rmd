@@ -7,8 +7,8 @@ date: "2024-04-05"
 ##**Databaseleri yükle **
 ```{r}
 library(readxl)
-#Sales <- read_excel("Sales.xlsx")
-#Games<-read_excel("Games.xlsx")
+Sales <- read_excel("Sales.xlsx")
+Games<-read_excel("Games.xlsx")
 ```
 
 
@@ -16,15 +16,19 @@ library(readxl)
 
 ```{r}
 library(DBI)
-##con<-dbConnect(RSQLite::SQLite(), dbname =":memory:")
-##dbDisconnect(con)
+library(RSQLite)
+library(dplyr)
 #con<-dbConnect(RSQLite::SQLite(), dbname = "veritabani.db")
 #dbWriteTable(con, "Games", Games)
 #dbWriteTable(con, "Sales", Sales)
+# Inner join işlemini yapma
+#dataJoined <- inner_join(Games, Sales, by = c("id","Name"))
+#head(dataJoined)
 
-result <- dbGetQuery(con, "SELECT * FROM Games JOIN Sales ON Games.id = Sales.id")
+#yeni üretilen tablo inidirildi
+#library(openxlsx)
+#write.xlsx(dataJoined, "dataJoined.xlsx")
 
- 
 
 ```
 
@@ -33,13 +37,20 @@ result <- dbGetQuery(con, "SELECT * FROM Games JOIN Sales ON Games.id = Sales.id
 ##**Grafikleştir**
 
 ```{r}
-print("hello")
+library(ggplot2)
+top_sales <- dataJoined %>%
+  arrange(desc(Global_Sales)) %>%
+  slice(1:10)
+
+bar_plot <- ggplot(data = top_sales, aes(x = reorder(Name, Global_Sales), y = Global_Sales)) +
+            geom_bar(stat = "identity", fill = "pink", color = "green") +
+            labs(title = "En Yüksek Global Satışlar", x = "Oyun Adı", y = "Global Satışlar") +
+            theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+            # Grafiğin boyutlarını artırın
+            theme(plot.margin = unit(c(1, 1, 1, 1), "cm"))
+
+# Grafiği görüntüleyelim
+print(bar_plot)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-````{r}
-#lolo
-print("hello")
-
-```
