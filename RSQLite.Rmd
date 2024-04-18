@@ -43,7 +43,7 @@ top_sales <- dataJoined %>%
   slice(1:10)
 
 bar_plot <- ggplot(data = top_sales, aes(x = reorder(Name, Global_Sales), y = Global_Sales)) +
-            geom_bar(stat = "identity", fill = "pink", color = "green") +
+            geom_bar(stat = "identity", fill = "pink", color = "black") +
             labs(title = "En Yüksek Global Satışlar", x = "Oyun Adı", y = "Global Satışlar") +
             theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
             # Grafiğin boyutlarını artırın
