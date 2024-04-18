@@ -18,11 +18,11 @@ Games<-read_excel("Games.xlsx")
 library(DBI)
 library(RSQLite)
 library(dplyr)
-#con<-dbConnect(RSQLite::SQLite(), dbname = "veritabani.db")
+con<-dbConnect(RSQLite::SQLite(), dbname = "veritabani.db")
 #dbWriteTable(con, "Games", Games)
 #dbWriteTable(con, "Sales", Sales)
 # Inner join işlemini yapma
-#dataJoined <- inner_join(Games, Sales, by = c("id","Name"))
+dataJoined <- inner_join(Games, Sales, by = c("id","Name"))
 #head(dataJoined)
 
 #yeni üretilen tablo inidirildi
